@@ -1,0 +1,49 @@
+# depslib dependency file v1.0
+1637607841 source:c:\users\quaqu\downloads\tinyshell\main.c
+	<stdio.h>
+	<windows.h>
+	<string.h>
+	"list_directory.h"
+	"run_background.h"
+	"run_foreground.h"
+	"kill_process.h"
+	"local_time.h"
+	"list_task.h"
+	"stop_resume_use_debug.h"
+	"help.h"
+
+1622340709 c:\users\quaqu\downloads\tinyshell\list_directory.h
+	<dirent.h>
+	<windows.h>
+	<stdio.h>
+
+1622340709 c:\users\quaqu\downloads\tinyshell\run_background.h
+	<windows.h>
+	<tchar.h>
+	<signal.h>
+
+1622340709 c:\users\quaqu\downloads\tinyshell\run_foreground.h
+	<windows.h>
+	<signal.h>
+	<tchar.h>
+
+1622340709 c:\users\quaqu\downloads\tinyshell\kill_process.h
+	<stdio.h>
+	<windows.h>
+
+1637607884 c:\users\quaqu\downloads\tinyshell\local_time.h
+	<stdio.h>
+	<time.h>
+
+1622340709 c:\users\quaqu\downloads\tinyshell\list_task.h
+	<stdio.h>
+	<windows.h>
+
+1622340709 c:\users\quaqu\downloads\tinyshell\stop_resume_use_debug.h
+	<stdio.h>
+	<windows.h>
+
+1637607465 c:\users\quaqu\downloads\tinyshell\help.h
+	<stdio.h>
+	<string.h>
+
