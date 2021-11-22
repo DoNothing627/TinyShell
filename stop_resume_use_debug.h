@@ -4,13 +4,10 @@
 //== ok done
 void suspend(DWORD processId)
 {
-    if (DebugActiveProcess(processId)) {
+    if (DebugActiveProcess(processId)) 
         printf("Process with id = %d is stopping", processId);
-    }
     else
-    {
         printf("Error!!! Can't stop this process");
-    }
 }
 void resume(DWORD processId)
 {

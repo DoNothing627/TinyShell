@@ -14,7 +14,7 @@ int isRunning(DWORD pid) {
     }
 
 }
-// ok done
+
 void print_processes() {
     printf("______________TASK MANAGER____________\n\n\n");
     printf("%10s       | %10s\n", "PID", "PROCESS");

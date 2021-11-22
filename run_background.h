@@ -18,7 +18,6 @@ int run_bg(char* filename)
     ZeroMemory(&si, sizeof(si));
     si.cb = sizeof(si);
 
-    //== chuyển từ char* sang _T
     wchar_t* _Tfilename = (wchar_t*)malloc((strlen(filename) + 1) * sizeof(wchar_t)); //memory allocation
     mbstowcs(_Tfilename, filename, strlen(filename) + 1);
 
