@@ -151,6 +151,7 @@
     <ClInclude Include="run_foreground.h" />
     <ClInclude Include="run_background.h" />
   </ItemGroup>
+
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
