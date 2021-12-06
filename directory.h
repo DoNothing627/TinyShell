@@ -11,9 +11,8 @@ void printListDir(char* directoryName) {
 	presentDir = opendir(directoryName);
 	if (presentDir != NULL)
 	{
-		while ((directory = readdir(presentDir)) != NULL) {
+		while ((directory = readdir(presentDir)) != NULL) 
 			printf("%s \n", directory->d_name);
-		}
 		closedir(presentDir);
 	}
 	else

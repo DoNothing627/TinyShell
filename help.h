@@ -21,6 +21,7 @@ void help() {
 	}
 
 	if (!strcmp(s, "local_time")) {
+        printf("\nUse command time");
 		printf("\nContains function local_time() : Print current time in local time zone");
 	}
 
@@ -29,7 +30,6 @@ void help() {
 	}
 
 	if (!strcmp(s, "kill_process")) {
-		printf("\nContains function kill() : Closes the specified process");
 		printf("\nContains killAllProcess() function: Closes all existing processes.");
 	}
 

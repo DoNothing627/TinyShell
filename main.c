@@ -2,13 +2,14 @@
 #include <stdio.h>
 #include <windows.h>
 #include <string.h>
-#include "list_directory.h"
-#include "run_background.h"
-#include "run_foreground.h"
-#include "kill_process.h"
+#include "menu.h"
+#include "directory.h"
+#include "kill.h"
 #include "local_time.h"
-#include "list_task.h"
-#include "stop_resume_use_debug.h"
+#include "task.h"
+#include "stopResumeUseDebug.h"
+#include "background.h"
+#include "foreground.h"
 #include "help.h"
 
 DWORD pid[20];
@@ -16,41 +17,21 @@ char name[20][30];
 int count = 0;
 
 //== them lenh clear xóa màn hình vào menu ==
-void menu()
-{
-    printf("\n\n");
-    printf("Menu of funtions in TinyShell:\n");
-    printf("[*] menu    : contain all funtions\n");
-    printf("[*] dir     : list all files in this directory with absolutely path\n");
-    printf("[*] r_fg    : run program in forgeground with absolutely path\n");
-    printf("[*] r_bg    : run program in background with absolutely path\n");
-    printf("[*] list    : list all processes with id which are running\n");
-    printf("[*] kill_all: kill all processes with id which are running\n");
-    printf("[*] kill    : kill a process with id which is running\n");
-    printf("[*] suspend : stop a process which is running.\n");
-    printf("[*] resume  : resume a stopping process which be stopped\n");
-    printf("[*] time    : print local time and date\n");
-    printf("[*] help    : description of all functions\n");
-    printf("[*] r_bat   : run file .bat\n");
-    printf("[*] clear   : clear the console\n");
-    printf("[*] exit    : exit shell\n");
-    printf("\n\n");
-}
 
 int main()
 {
-    char user_input[100];
-    char cmd[2][100];
+    char user_input[300];
+    char filter_input[300], parameter[300];
     char space = ' ';
     char* index_space;
-    printf("                        WELCOME TO TINY SHELL\n");
+    printf("                         TINY SHELL\n");
     printf("-----------------------------------------------------------------------\n");
 
     menu();
 
     while (1)
     {
-        printf(">");
+        printf("\n>");
         scanf("%[^\n]%*c", user_input);
         fflush(stdin);
 
@@ -59,43 +40,39 @@ int main()
         if (index_space != NULL)
         {
             // tách tham số phía sau input
-            strcpy(cmd[1], index_space + 1);
+            strcpy(parameter, index_space + 1);
             // copy toàn bộ input
-            strcpy(cmd[0], user_input);
+            strcpy(filter_input, user_input);
             // tách lệnh phía trước input
-            cmd[0][strlen(user_input) - strlen(cmd[1]) - 1] = '\0';
+            filter_input[strlen(user_input) - strlen(parameter) - 1] = '\0';
         }
         // gán input vào cmd
-        else strcpy(cmd[0], user_input);
+        else strcpy(filter_input, user_input);
 
         // thuc hien cau lenh
-        if (strcmp(cmd[0], "dir") == 0)
-            printListDir(cmd[1]);
-        else if (strcmp(cmd[0], "menu") == 0)
+        if (strcmp(filter_input, "dir") == 0)
+            printListDir(parameter);
+        else if (strcmp(filter_input, "menu") == 0)
             menu();
-        else if (strcmp(cmd[0], "r_fg") == 0)
-            run_fg(cmd[1]);
-        else if (strcmp(cmd[0], "r_bg") == 0)
-            run_bg(cmd[1]);
-        else if (strcmp(cmd[0], "list") == 0)
+        else if (strcmp(filter_input, "r_fg") == 0)
+            run_fg(parameter);
+        else if (strcmp(filter_input, "r_bg") == 0)
+            run_bg(parameter);
+        else if (strcmp(filter_input, "list") == 0)
             print_processes();
-        else if (strcmp(cmd[0], "kill_all") == 0)
+        else if (strcmp(filter_input, "kill_all") == 0)
             killAllProcesses();
-        else if (strcmp(cmd[0], "kill") == 0)
-            kill(cmd[1]);
-        else if (strcmp(cmd[0], "r_bat") == 0)
-            system(cmd[1]);
-        else if (strcmp(cmd[0], "suspend") == 0)
-            suspend(cmd[1]);
-        else if (strcmp(cmd[0], "resume") == 0)
-            resume(cmd[1]);
-        else if (strcmp(cmd[0], "time") == 0)
+        else if (strcmp(filter_input, "suspend") == 0)
+            suspend(parameter);
+        else if (strcmp(filter_input, "resume") == 0)
+            resume(parameter);
+        else if (strcmp(filter_input, "time") == 0)
             local_time();
-        else if (strcmp(cmd[0], "help") == 0)
+        else if (strcmp(filter_input, "help") == 0)
             help();
-        else if (strcmp(cmd[0], "clear") == 0)
+        else if (strcmp(filter_input, "clear") == 0)
             system("cls");
-        else if (strcmp(cmd[0], "exit") == 0)
+        else if (strcmp(filter_input, "exit") == 0)
             exit(0);
         else
             printf("Command not found!\n");
