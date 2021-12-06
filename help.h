@@ -21,21 +21,18 @@ void help() {
 	}
 
 	if (!strcmp(s, "local_time")) {
-        printf("\nUse command time");
+                printf("\nUse command time");
 		printf("\nContains function local_time() : Print current time in local time zone");
 	}
 
-	if (!strcmp(s, "list_task")) {
+	if (!strcmp(s, "list_task")) 
 		printf("\nContains function print_process() : Print out information of running processes. ");
-	}
 
-	if (!strcmp(s, "kill_process")) {
+	if (!strcmp(s, "kill_process")) 
 		printf("\nContains killAllProcess() function: Closes all existing processes.");
-	}
 
-	if (!strcmp(s, "list_directory")) {
+	if (!strcmp(s, "list_directory")) 
 		printf("6");
-	}
 
 	if (!strcmp(s, "stop_resume_use_debug")) {
 		printf("\nContains suspend () function: Suspends the specified process, incorporates the debug feature");

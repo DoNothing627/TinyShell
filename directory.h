@@ -3,7 +3,6 @@
 #include <windows.h>
 #include <stdio.h>
 
-//== ok done ==
 void printListDir(char* directoryName) {
 	DIR* presentDir;
 	struct dirent* directory;
@@ -16,8 +15,6 @@ void printListDir(char* directoryName) {
 		closedir(presentDir);
 	}
 	else
-	{
 		printf(" \nError!!! Can't open this directory.");
-	}
 	printf("\n");
 }

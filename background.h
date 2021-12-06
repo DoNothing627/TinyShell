@@ -6,11 +6,9 @@
 DWORD pid[20];
 char name[20][30];
 int count;
-void signal_ctrl_c() {
-    // chưa sửa được lỗi ko update list processes khi tắt bằng ctrl + c
+void signal_ctrl_c() 
     printf("test!!!");
-}
-//== ok done ==
+
 int run_bg(char* filename)
 {
     STARTUPINFO si;
@@ -31,10 +29,7 @@ int run_bg(char* filename)
     pid[count] = pi.dwProcessId;
     strcpy(name[count], filename);
     count++;
-    //== hàm hỗ trợ ctrl + c để tắt tiến trình (chỉ hỗ trợ console app)
-
     signal(2, signal_ctrl_c);
-
     CloseHandle(pi.hProcess);
     CloseHandle(pi.hThread);
     return 0;
