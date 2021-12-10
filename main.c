@@ -6,15 +6,12 @@
 #include "directory.h"
 #include "kill.h"
 #include "local_time.h"
-#include "task.h"
-#include "stopResumeUseDebug.h"
+#include "stopResume.h"
 #include "background.h"
 #include "foreground.h"
-#include "help.h"
 
-DWORD pid[20];
-char space = ' ', name[20][30], user_input[300], filter_input[300], parameter[300];
-char* index_space;
+char user_input[300], filter_input[300], parameter[300];
+char* i;
 int count = 0;
 
 int main()
@@ -23,51 +20,42 @@ int main()
 
     menu();
 
-    while (1)
+    while(1)
     {
         printf("\n>");
         scanf("%[^\n]%*c", user_input);
         fflush(stdin);
 
-        index_space = strchr(user_input, space);
-        if (index_space != NULL)
+        i= strchr(user_input, ' ');
+        if(i!= NULL)
         {
-            // tách tham số phía sau input
-            strcpy(parameter, index_space + 1);
-            // copy toàn bộ input
+            strcpy(parameter, i + 1);
             strcpy(filter_input, user_input);
-            // tách lệnh phía trước input
-            filter_input[strlen(user_input) - strlen(parameter) - 1] = '\0';
+            filter_input[strlen(user_input) - strlen(parameter) - 1]= '\0';
         }
-        // gán input vào cmd
         else strcpy(filter_input, user_input);
 
-        // thuc hien cau lenh
-        if (strcmp(filter_input, "dir") == 0)
-            printListDir(parameter);
-        else if (strcmp(filter_input, "menu") == 0)
+        if(!strcmp(filter_input, "ls"))
+            printDir(parameter);
+        else if(!strcmp(filter_input, "menu"))
             menu();
-        else if (strcmp(filter_input, "time") == 0)
+        else if(!strcmp(filter_input, "time"))
             local_time();
-        else if (strcmp(filter_input, "run_fg") == 0)
+        else if(!strcmp(filter_input, "run_fg"))
             run_fg(parameter);
-        else if (strcmp(filter_input, "run_bg") == 0)
+        else if(!strcmp(filter_input, "run_bg"))
             run_bg(parameter);
-        else if (strcmp(filter_input, "list") == 0)
-            print_processes();
-        else if (strcmp(filter_input, "kill_all") == 0)
-            killAllProcesses();
-        else if (strcmp(filter_input, "stop") == 0)
-            suspend(parameter);
-        else if (strcmp(filter_input, "resume") == 0)
+        else if(!strcmp(filter_input, "kill"))
+            kill();
+        else if(!strcmp(filter_input, "stop"))
+            stop(parameter);
+        else if(!strcmp(filter_input, "resume"))
             resume(parameter);
-        else if (strcmp(filter_input, "run_bat") == 0)
+        else if(!strcmp(filter_input, "run_bat"))
             system(parameter);
-        else if (strcmp(filter_input, "help") == 0)
-            help();
-        else if (strcmp(filter_input, "clear") == 0)
+        else if(!strcmp(filter_input, "clear"))
             system("cls");
-        else if (strcmp(filter_input, "exit") == 0)
+        else if(!strcmp(filter_input, "exit"))
             exit(0);
         else
             printf("Command not found!\n");

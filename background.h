@@ -5,9 +5,9 @@
 
 DWORD Id[20];
 char name[20][30];
-int count;
-void signal_ctrl_c() {
-    printf("test!!!");
+int cnt;
+void ctrlC() {
+    printf("END");
 }
 
 int run_bg(char* filename)
@@ -21,15 +21,15 @@ int run_bg(char* filename)
     mbstowcs(_Tfilename, filename, strlen(filename) + 1);
 
     if (!CreateProcess(_Tfilename, NULL, NULL, NULL, FALSE, CREATE_NEW_CONSOLE, NULL, NULL, &s, &p)){
-        printf("Error!!! Can't open this process\n");
+        printf("Can't open this process\n");
         return 1;
     }
 
-    printf("process has id = %lu is running\n", p.dwProcessId);
-    Id[count] = p.dwProcessId;
-    strcpy(name[count], filename);
-    count++;
-    signal(2, signal_ctrl_c);
+    printf("process id = %lu is running\n", p.dwProcessId);
+    Id[cnt] = p.dwProcessId;
+    strcpy(name[cnt], filename);
+    cnt++;
+    signal(2, ctrlC);
     CloseHandle(p.hProcess);
     CloseHandle(p.hThread);
     return 0;

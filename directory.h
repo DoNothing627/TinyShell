@@ -3,18 +3,18 @@
 #include <windows.h>
 #include <stdio.h>
 
-void printListDir(char* directoryName) {
-	DIR* presentDir;
+void printDir(char* path) {
+	DIR* dir;
 	struct dirent* directory;
 
-	presentDir = opendir(directoryName);
-	if (presentDir != NULL)
+	dir = opendir(path);
+	if (dir!= NULL)
 	{
-		while ((directory = readdir(presentDir)) != NULL) 
-			printf("%s \n", directory->d_name);
-		closedir(presentDir);
+		while((directory= readdir(dir))!= NULL)
+			printf("%s \n", directory-> d_name);
+		closedir(dir);
 	}
 	else
-		printf(" \nError!!! Can't open this directory.");
+		printf("\nCan't open this directory.");
 	printf("\n");
 }

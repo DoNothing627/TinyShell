@@ -1,18 +1,17 @@
 void menu()
 {
     printf("\n\n");
-    printf("[*] menu    : contain all funtions\n");
-    printf("[*] dir     : list all files in this directory with absolutely path\n");
+    printf("[*] menu    : show all funtions\n");
+    printf("[*] ls     : list all files with absolutely path\n");
     printf("[*] time    : print local time\n");
-    printf("[*] run_fg    : run program in forgeground with absolutely path\n");
-    printf("[*] run_bg    : run program in background with absolutely path\n");
-    printf("[*] list    : list all processes with id which are running\n");
-    printf("[*] kill_all: kill all processes with id which are running\n");
+    printf("[*] run_fg    : run processes in forgeground with path\n");
+    printf("[*] run_bg    : run processes in background with path\n");
+    printf("[*] list    : list all processes with id\n");
+    printf("[*] kill: kill all processes with id\n");
     printf("[*] stop: stop a process which is running.\n");
     printf("[*] resume  : resume a stopping process which be stopped\n");
     printf("[*] run_bat   : run file .bat\n");
-    printf("[*] help    : description of all functions\n");
     printf("[*] clear   : clear the console\n");
-    printf("[*] exit    : exit tiny shell\n");
+    printf("[*] exit    : exit\n");
     printf("\n\n");
 }
