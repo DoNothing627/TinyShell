@@ -9,7 +9,7 @@ void signal_terminate(DWORD id) {
     CloseHandle(hProcess);
     return;
 }
-//== ok done ==
+
 int run_fg(char* filename)
 {
     STARTUPINFO si;
@@ -21,13 +21,11 @@ int run_fg(char* filename)
     wchar_t* _Tfilename = (wchar_t*)malloc((strlen(filename) + 1) * sizeof(wchar_t)); //memory allocation
     mbstowcs(_Tfilename, filename, strlen(filename) + 1);
 
-    if (!CreateProcess(_Tfilename, NULL, NULL, NULL, FALSE, 
-        CREATE_NEW_CONSOLE, NULL, NULL, &si, &pi))
-    {
+    if (!CreateProcess(_Tfilename, NULL, NULL, NULL, FALSE, CREATE_NEW_CONSOLE, NULL, NULL, &si, &pi)){
         printf("Error!!! Can't open this process\n");
         return 1;
     }
-    //== hàm hỗ trợ ctrl + c để tắt tiến trình (chỉ hỗ trợ console app)
+
     signal(SIGINT, signal_terminate);
     //== tạo fg process nhờ funtion này ==
     WaitForSingleObject(pi.hProcess, 10000);

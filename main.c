@@ -13,19 +13,13 @@
 #include "help.h"
 
 DWORD pid[20];
-char name[20][30];
+char space = ' ', name[20][30], user_input[300], filter_input[300], parameter[300];
+char* index_space;
 int count = 0;
-
-//== them lenh clear xóa màn hình vào menu ==
 
 int main()
 {
-    char user_input[300];
-    char filter_input[300], parameter[300];
-    char space = ' ';
-    char* index_space;
-    printf("                         TINY SHELL\n");
-    printf("-----------------------------------------------------------------------\n");
+    printf("-------------------------------TINY SHELL-----------------------------\n");
 
     menu();
 
@@ -35,7 +29,6 @@ int main()
         scanf("%[^\n]%*c", user_input);
         fflush(stdin);
 
-        // tách lệnh từ input của người dùng
         index_space = strchr(user_input, space);
         if (index_space != NULL)
         {
@@ -54,20 +47,22 @@ int main()
             printListDir(parameter);
         else if (strcmp(filter_input, "menu") == 0)
             menu();
-        else if (strcmp(filter_input, "r_fg") == 0)
+        else if (strcmp(filter_input, "time") == 0)
+            local_time();
+        else if (strcmp(filter_input, "run_fg") == 0)
             run_fg(parameter);
-        else if (strcmp(filter_input, "r_bg") == 0)
+        else if (strcmp(filter_input, "run_bg") == 0)
             run_bg(parameter);
         else if (strcmp(filter_input, "list") == 0)
             print_processes();
         else if (strcmp(filter_input, "kill_all") == 0)
             killAllProcesses();
-        else if (strcmp(filter_input, "suspend") == 0)
+        else if (strcmp(filter_input, "stop") == 0)
             suspend(parameter);
         else if (strcmp(filter_input, "resume") == 0)
             resume(parameter);
-        else if (strcmp(filter_input, "time") == 0)
-            local_time();
+        else if (strcmp(filter_input, "run_bat") == 0)
+            system(parameter);
         else if (strcmp(filter_input, "help") == 0)
             help();
         else if (strcmp(filter_input, "clear") == 0)
