@@ -12,8 +12,9 @@ void ctrlC() {
 
 int run_bg(char* filename)
 {
-    STARTUPINFO s;
     PROCESS_INFORMATION p;
+    STARTUPINFO s;
+
     ZeroMemory(&s, sizeof(s));
     s.cb = sizeof(s);
 

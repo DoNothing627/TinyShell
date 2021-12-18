@@ -3,8 +3,9 @@
 
 void local_time()
 {
+    struct tm* TIME_INFO;
 	time_t TIME_T;
-	struct tm* TIME_INFO;
+
 	time(&TIME_T);
 	TIME_INFO = localtime(&TIME_T);
 	printf("%s", asctime(TIME_INFO));

@@ -12,8 +12,9 @@ void destroy(DWORD id) {
 
 int run_fg(char* filename)
 {
-    STARTUPINFO s;
     PROCESS_INFORMATION p;
+    STARTUPINFO s;
+
     ZeroMemory(&s, sizeof(s));
     s.cb = sizeof(s);
 

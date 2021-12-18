@@ -4,15 +4,15 @@
 #include <stdio.h>
 
 void printDir(char* path) {
-	DIR* dir;
-	struct dirent* directory;
 
-	dir = opendir(path);
-	if (dir!= NULL)
+    struct dirent* directory;
+	DIR* ls= opendir(path);
+
+	if (ls!= NULL)
 	{
-		while((directory= readdir(dir))!= NULL)
+		while((directory= readdir(ls))!= NULL)
 			printf("%s \n", directory-> d_name);
-		closedir(dir);
+		closedir(ls);
 	}
 	else
 		printf("\nCan't open this directory.");
